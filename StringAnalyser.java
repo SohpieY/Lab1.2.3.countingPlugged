@@ -7,28 +7,32 @@ import java.util.Scanner;
 
 public class StringAnalyser {
 
-    public static ArrayList<String> stringAnalyser (ArrayList<String> rawStrings, String commonWordsFilePath) throws FileNotFoundException {
+    public static ArrayList<String> stringAnalyser (ArrayList<String> dirtyList, String commonWordsFilePath) throws FileNotFoundException {
+        //the dirtyword list is passed into the rawStrings as a file
         // Create an ArrayList to hold common words
         ArrayList<String> commonWords = new ArrayList<>();
-        File commonWordsFile = new File(commonWordsFilePath);
+        //creating new array list to store the common words
+        File commonWordsFile = new File("/Users/apple/IdeaProjects/countingPlugged/commonWords.txt");
+        //turning the common words txt into a file in IDE
         Scanner scanner = new Scanner(commonWordsFile);
+        //creatign a scanner to read that commonWords file
 
-        while(scanner.hasNextLine()){
-            String common = scanner.nextLine().trim();
-            if(!common.isEmpty()){
-                commonWords.add(common.toLowerCase());
-                // Store in lowercase for case-insensitive comparison
-
-            }
+        while(scanner.hasNext()){
+            //while the scanner has a next line
+            String common = scanner.next();
+            //change into string
+            commonWords.add(common);
+            //add the string into the commonWords array list
         }
 
-        scanner.close();
+        scanner.close(); //close the scanning
 
-        ArrayList<String> cleanWordList = new ArrayList<>();
+        ArrayList<String> cleanWordList = new ArrayList<>(); //create a new array list to store the clean words
 
-        for(String dirtyWord:rawStrings){
-            if(!commonWords.contains(dirtyWord.toLowerCase())){
-                cleanWordList.add(dirtyWord);
+        for(String currentWord : dirtyList){
+            if(!commonWords.contains(currentWord)){
+                //if my currentWord appears in the commonWord file, then we have to remove
+                cleanWordList.add(currentWord);
             }
         }
 
