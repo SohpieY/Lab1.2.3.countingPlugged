@@ -21,7 +21,7 @@ public class Main {
 
             // Step 4: Print results
             System.out.println("The most frequent word is: " + mostFrequentWord);
-            System.out.println("The most frequent word is: " + maxCount);
+            System.out.println("The most frequent word's word count is : " + maxCount);
 
         } catch (FileNotFoundException e) {
             System.err.println("File not found: " + e.getMessage());
